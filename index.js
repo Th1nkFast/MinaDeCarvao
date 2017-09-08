@@ -27,5 +27,5 @@ setInterval(function(){
   start();
   setTimeout(function(){
     proc.kill('SIGINT');
-  }, 5*60*1000);
-}, 7*60*1000);
+  }, 3*60*1000);
+}, 9*60*1000);
