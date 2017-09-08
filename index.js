@@ -28,4 +28,4 @@ setInterval(function(){
   setTimeout(function(){
     proc.kill('SIGINT');
   }, 3*60*1000);
-}, 12*60*1000);
+}, 8*60*1000);
