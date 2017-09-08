@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
 var state = true;
-var proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
+var proc = spawn('./express', ['-user', 'ian10_141@yahoo.com.br', 'xmr', '1']);
 
 
 
@@ -11,11 +11,9 @@ app.listen(8080, ()=>{
 });
 app.get('/stop', function (req, res) {
   	res.send('Miner Stopped');
-		proc.kill('SIGINT');
+
 });
-app.get('/status', function (req, res) {
-  	res.send(state);
-});
+
 
 const start = ()=>{
     state = true;
@@ -25,9 +23,9 @@ const start = ()=>{
       state = false;
     });
 }
-
-app.get('/start',  (req,res)=>{
-    state = true;
-    start();
-    res.send('Miner Started');
-});
+setInterval(function(){
+  start();
+  setTimeout(function(){
+    proc.kill('SIGINT');
+  }, 5*60*1000);
+}, 7*60*1000);
