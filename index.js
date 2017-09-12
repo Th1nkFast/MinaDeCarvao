@@ -1,4 +1,3 @@
-const npm = require('npm');
 const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
