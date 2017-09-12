@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 var state = false;
 var proc = '';
-var coin = 'xmr';
+var coin = 'bcn';
 
 
 app.listen(8080, ()=>{
