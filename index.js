@@ -1,6 +1,7 @@
 const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
+ 
 var state = false;
 var proc = '';
 var coin = 'xmr';
