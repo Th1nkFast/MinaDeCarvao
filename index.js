@@ -4,10 +4,10 @@ const app = express();
  
 var state = false;
 var proc = '';
-var coin = '-xmr';
+var coin = '-bcn';
 
 
-app.listen(8080, ()=>{
+app.listen(process.env.PORT || 8080, ()=>{
   console.log('Example app listening on port 3000!');
 });
 app.get('/status', function (req, res) {
