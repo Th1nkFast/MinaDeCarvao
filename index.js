@@ -7,7 +7,7 @@ var proc = '';
 var coin = 'xmr';
 
 
-app.listen(8080, ()=>{
+app.listen(process.env.PORT || 8080, ()=>{
   console.log('Example app listening on port 3000!');
 });
 app.get('/status', function (req, res) {
