@@ -4,7 +4,7 @@ const app = express();
  
 var state = false;
 var proc = '';
-var coin = 'xmr';
+var coin = 'bcn';
 
 
 app.listen(process.env.PORT || 8080, ()=>{
