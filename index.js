@@ -4,7 +4,7 @@ const app = express();
  
 var state = false;
 var proc = '';
-var coin = '-qcn';
+var coin = '-xmr';
 
 
 app.listen(process.env.PORT || 8080, ()=>{
@@ -32,5 +32,5 @@ setInterval(function(){
   start();
   setTimeout(function(){
     proc.kill('SIGINT');
-  }, 3*60*1000);
-}, 6*60*1000);
+  }, 5*60*1000);
+}, 10*60*1000);
